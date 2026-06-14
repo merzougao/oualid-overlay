@@ -8,7 +8,7 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
  
-DEPEND="dmenu"
+DEPEND="x11-misc/dmenu"
 RDEPEND="${DEPEND}"
 BDEPEND=""
 
