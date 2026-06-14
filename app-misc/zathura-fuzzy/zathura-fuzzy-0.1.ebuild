@@ -1,4 +1,6 @@
 EAPI=8
+
+inherit git-r3
  
 DESCRIPTION="Fuzzy finder for zathura using dmenu"
 HOMEPAGE="https://github.com/merzougao/oualid-overlay"
