@@ -4,6 +4,7 @@ inherit git-r3
  
 DESCRIPTION="Fuzzy finder for zathura using dmenu"
 HOMEPAGE="https://github.com/merzougao/oualid-overlay"
+EGIT_REPO_URI="https://github.com/merzougao/oualid-overlay.git"
  
 LICENSE="GPL-2"
 SLOT="0"
