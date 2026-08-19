@@ -1,0 +1,41 @@
+diff --git a/pinentry-dmenu.c b/pinentry-dmenu.c
+index 6c18b29..319ac8f 100644
+--- a/pinentry-dmenu.c
++++ b/pinentry-dmenu.c
+@@ -225,10 +225,27 @@ insert(const char *str, ssize_t n) {
+ }
+ 
+ static void
+-clear_string(char *str)
++format_description(char *str)
+ {
+ 	int i;
+ 	char *dest = str;
++	char *key, *key_end;
++	size_t key_len;
++	static const char prefix[] = "Unlock GPG key ";
++	static const char unlock_prompt[] =
++		"Please enter the passphrase to unlock the OpenPGP secret key:";
++
++	/* GPG puts the key's user ID in quotes on the second line. */
++	if (!strncmp(str, unlock_prompt, sizeof(unlock_prompt) - 1)
++	    && (key = strstr(str, "\n\""))
++	    && (key_end = strchr(key + 2, '"'))) {
++		key += 2;
++		key_len = key_end - key;
++		memmove(str + sizeof(prefix) - 1, key, key_len);
++		memcpy(str, prefix, sizeof(prefix) - 1);
++		str[sizeof(prefix) - 1 + key_len] = '\0';
++		return;
++	}
+ 
+ 	/* remove new lines */
+ 	for (i = 0; i < strlen(str); i++) {
+@@ -277,6 +294,6 @@ drawwin(void) {
+ 	}
+ 
+ 	if (pinentry_info->description) {
+-		clear_string(pinentry_info->description);
++		format_description(pinentry_info->description);
+ 		pdesclen = strlen(pinentry_info->description);
+ 		pb = mw - x;
