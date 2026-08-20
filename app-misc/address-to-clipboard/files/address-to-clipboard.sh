@@ -2,6 +2,9 @@
 
 ADDRESS_BOOK=$HOME/.address-book
 
-selection=$({ cat "$ADDRESS_BOOK"; printf "Add New Contact\n"; } | dmenu -p "Address to copy to clipboard:") || exit 0
-[ "$selection" = "Add New Contact" ] && dmenu -p "Add new [NAME <ADDRESS>]:" < /dev/null >> $ADDRESS_BOOK && exit 0
-echo "$selection" | tr -d \\n | xclip -selection clipboard
+selection=$( cat "$ADDRESS_BOOK" | dmenu -p "Add new [NAME <ADDRESS>]:") || exit 0
+if cat "$ADDRESS_BOOK" | grep -Fxq "$selection"; then
+	echo "$selection" | tr -d \\n | xclip -selection clipboard
+else
+	echo $selection >> $ADDRESS_BOOK && sort -u -o "$ADDRESS_BOOK" "$ADDRESS_BOOK"
+fi
