@@ -1,6 +1,6 @@
 EAPI=8
 
-DESCRIPTION="Utility to handle emails interactively using mblaze and dmenu"
+DESCRIPTION="Utility to handle drafts using mblaze and dmenu"
 HOMEPAGE="https://github.com/merzougao/oualid-overlay"
 
 LICENSE="GPL-2"
@@ -11,12 +11,12 @@ IUSE=""
 RDEPEND="
 	=mail-client/mblaze-9999
 	=app-misc/pinentry-dmenu-0.1
-	=app-misc/pinentry-draft-0.1
 	x11-misc/dmenu
 "
 
 S="${WORKDIR}"
 
 src_install() {
-	newbin "${FILESDIR}"/mblaze-dmenu.sh mblaze-dmenu
+	newbin "${FILESDIR}"/mblaze-draft.sh mblaze-draft
+	doman "${FILESDIR}"/mblaze-draft.1
 }
