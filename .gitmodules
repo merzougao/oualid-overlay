@@ -4,3 +4,6 @@
 [submodule "app-misc/mblaze-dmenu"]
 	path = app-misc/mblaze-dmenu
 	url = git@git.sr.ht:~merzougao/mblaze-dmenu
+[submodule "app-misc/pass-to-clipboard/files/pass-to-clipboard"]
+	path = app-misc/pass-to-clipboard/files/pass-to-clipboard
+	url = git@git.sr.ht:~merzougao/pass-to-clipboard
