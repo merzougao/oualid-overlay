@@ -1,3 +1,6 @@
 [submodule "app-misc/mblaze-draft"]
 	path = app-misc/mblaze-draft
 	url = git@git.sr.ht:~merzougao/mblaze-draft
+[submodule "app-misc/mblaze-dmenu"]
+	path = app-misc/mblaze-dmenu
+	url = git@git.sr.ht:~merzougao/mblaze-dmenu
