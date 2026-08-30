@@ -1,0 +1,3 @@
+[submodule "app-misc/mblaze-draft"]
+	path = app-misc/mblaze-draft
+	url = git@git.sr.ht:~merzougao/mblaze-draft
