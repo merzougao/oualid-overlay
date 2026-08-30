@@ -11,7 +11,7 @@ IUSE=""
 RDEPEND="
 	=mail-client/mblaze-9999
 	=app-misc/pinentry-dmenu-0.1
-	=app-misc/pinentry-draft-0.1
+	=app-misc/mblaze-draft-0.1
 	x11-misc/dmenu
 "
 

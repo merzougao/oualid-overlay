@@ -7,31 +7,6 @@ log() {
 
 ATTACHMENT_TYPES="application/pdf" #This must be | separated, i.e application/pdf|application/xxx, so that sed can consume it
 
-handle_draft() {
-  while true; do
-    action_draft=$(printf "send\nattach\nedit\n" | dmenu -p "Draft?") || return 1
-    case "$action_draft" in
-      send)
-        log "Sending..."
-        if send_error=$(mcom -r "$1" -send 2>&1); then
-          log "Email sent."
-          return 0
-        fi
-        log "Email failed to send."
-        ;;
-      attach)
-        log "Attaching..."
-        file_to_attach=$(fd -tf . "$HOME" | dmenu -p "File to attach:") || return 1
-        [ -f "$file_to_attach" ] && sed -i "1a Attach: $file_to_attach" -- "$1"
-        ;;
-      edit)
-        log "Editing draft..."
-        st -e "$EDITOR" "$1"
-        ;;
-    esac
-  done
-}
-
 action=$(printf "list mails\ncompose new\nrefresh\n" | dmenu -p "Emails") || exit 0
 case "$action" in
   "compose new")
