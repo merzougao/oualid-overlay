@@ -20,7 +20,7 @@ RDEPEND="media-fonts/urw-fonts"
 
 src_unpack() {
 	local repo
-	for repo in neatroff neatpost neatmkfn neateqn; do
+	for repo in neatroff neatpost neatmkfn neateqn neatrefer; do
 		EGIT_REPO_URI="https://github.com/aligrudi/${repo}.git" \
 			EGIT_CHECKOUT_DIR="${WORKDIR}/${repo}" git-r3_src_unpack
 	done
@@ -28,7 +28,7 @@ src_unpack() {
 	EGIT_REPO_URI="https://github.com/aligrudi/neatroff_make.git" \
 		EGIT_CHECKOUT_DIR="${S}" git-r3_src_unpack
 
-	for repo in neatroff neatpost neatmkfn neateqn; do
+	for repo in neatroff neatpost neatmkfn neateqn neatrefer; do
 		mv "${WORKDIR}/${repo}" "${S}/${repo}" || die
 	done
 }
@@ -54,6 +54,10 @@ src_compile() {
 		CC="$(tc-getCC)" \
 		CFLAGS="${cflags} -DTROFFFDIR=\\\"${fdir}\\\"" \
 		LDFLAGS="${LDFLAGS}"
+	emake -C neatrefer \
+		CC="$(tc-getCC)" \
+		CFLAGS="${cflags} -DTROFFFDIR=\\\"${fdir}\\\"" \
+		LDFLAGS="${LDFLAGS}"
 
 	(
 		cd neatmkfn || die
@@ -70,8 +74,9 @@ src_install() {
 	newbin neatpost/post neatpost
 	newbin neatpost/pdf neatpdf
 	newbin neateqn/eqn neateqn
+	newbin neatrefer/refer neatrefer
 
-	doman man/{neatroff,neatpost,neateqn}.1
+	doman man/{neatroff,neatpost,neateqn,neatrefer}.1
 
 	insinto /usr/share/neatroff/tmac
 	doins -r tmac/*

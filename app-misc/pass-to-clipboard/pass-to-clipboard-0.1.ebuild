@@ -19,4 +19,5 @@ S="${WORKDIR}"
 
 src_install() {
 	newbin "${FILESDIR}"/pass-to-clipboard/pass-to-clipboard.sh pass-to-clipboard
+	doman "${FILESDIR}"/pass-to-clipboard/pass-to-clipboard.1
 }

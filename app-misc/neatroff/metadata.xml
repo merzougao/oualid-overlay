@@ -7,5 +7,6 @@
 		<remote-id type="github">aligrudi/neatpost</remote-id>
 		<remote-id type="github">aligrudi/neatmkfn</remote-id>
 		<remote-id type="github">aligrudi/neateqn</remote-id>
+		<remote-id type="github">aligrudi/neatrefer</remote-id>
 	</upstream>
 </pkgmetadata>
