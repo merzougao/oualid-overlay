@@ -17,5 +17,5 @@ RDEPEND="
 "
 
 src_install() {
-	newbin zathura-fuzzy.sh zathura-fuzzy
+	newbin zathura-open.sh zathura-open
 }
